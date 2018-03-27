@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App14"
+             xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
+             x:Class="App14.CalendarView"
+             Title="CALENDAR">
+    <ContentPage.ToolbarItems>
+        <!--<ToolbarItem x:Name="icon" Icon="plus.png" Order="Primary"/>-->
+        <ToolbarItem x:Name="addReminder" Icon="plus.png" Clicked="addReminder_Clicked" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            
+            <StackLayout x:Name="absMain" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="2">
+                <StackLayout VerticalOptions="StartAndExpand">
+                    <controls:Calendar  SelectedDate="{Binding CalendarSelectedDate, Mode=TwoWay}" 
+                      HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"  x:Name="calendar"  DateCommand="{Binding DateSelectedcommand}"/>
+                </StackLayout>
+                <StackLayout VerticalOptions="End">
+                    <Label x:Name="lbl" VerticalOptions="Center" 
+                       HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium" />
+                </StackLayout>
+            </StackLayout>
+
+            <!--
+            <StackLayout x:Name="backlayout" IsVisible="False" Opacity=".7" BackgroundColor="Black">
+                <local:ButtonContext x:Name="BtnMenu"/>
+            </StackLayout>
+
+            <StackLayout x:Name="btnlayout" IsVisible="False" Opacity="1" >
+                <local:ButtonContext x:Name="BtnMenu"/>
+            </StackLayout>
+
+            <StackLayout x:Name="mainStack">
+                <local:menus x:Name="Menu"/>
+            </StackLayout>
+            -->
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
