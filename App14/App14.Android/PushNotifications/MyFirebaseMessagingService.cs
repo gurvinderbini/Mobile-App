@@ -34,6 +34,7 @@ namespace App14.Droid.PushNotifications
                     if (item.Key == "Message")
                     {
                         text = item.Value;
+                        App.Database.InsertNotification(new Models.NotificationBO() { Text=text});
                     }
                 }
 

@@ -182,7 +182,7 @@ namespace App14
                 return (from i in database.Table<RegEntity>() select i).ToListAsync();
             }
         }*/
-        public Task<int> InsertItem(NotificationBO item)
+        public Task<int> InsertNotification(NotificationBO item)
         {
             return database.InsertAsync(item);
         }
