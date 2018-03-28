@@ -45,7 +45,7 @@ namespace App14.Droid.PushNotifications
                 var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
                 var notificationBuilder = new NotificationCompat.Builder(this)
                     .SetSmallIcon(Resource.Drawable.icon)
-                    .SetContentTitle("SSA")
+                    .SetContentTitle("Mobile App")
                     .SetContentText(text)
                     .SetAutoCancel(true)
                     .SetSound(defaultSoundUri)
