@@ -161,14 +161,17 @@ namespace App14
             database.CreateTableAsync<EventsList>().Wait();
             // create the tables  for save credentials
             database.CreateTableAsync<RememberMeCredentials>().Wait();
+
+            database.CreateTableAsync<NotificationBO>().Wait();
+
         }
-        public SQLite.SQLiteAsyncConnection GetConnection()
+        public SQLiteAsyncConnection GetConnection()
         {
             SQLiteAsyncConnection sqlitConnection;
             var sqliteFilename = "cloudSchool.db3";
             IFolder folder = FileSystem.Current.LocalStorage;
             string path = PortablePath.Combine(folder.Path.ToString(), sqliteFilename);
-            sqlitConnection = new SQLite.SQLiteAsyncConnection(path);
+            sqlitConnection = new SQLiteAsyncConnection(path);
             return sqlitConnection;
         }
         /*
@@ -179,6 +182,19 @@ namespace App14
                 return (from i in database.Table<RegEntity>() select i).ToListAsync();
             }
         }*/
+        public Task<int> InsertItem(NotificationBO item)
+        {
+            return database.InsertAsync(item);
+        }
+        public Task<List<NotificationBO>> GetAllNotfications()
+        {
+            return database.Table<NotificationBO>().ToListAsync();
+            lock (locker)
+            {
+               
+            }
+        }
+
         public Task<RegEntity> GetItemFirst()
         {
             lock (locker)

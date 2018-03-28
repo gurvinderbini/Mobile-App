@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="Models\Common.cs" />
     <Compile Include="Models\LoginData.cs" />
+    <Compile Include="Models\NotificationBO.cs" />
     <Compile Include="Models\PostQuery.cs" />
     <Compile Include="Models\RegEntity.cs" />
     <Compile Include="Models\RememberMeCredentials.cs" />
@@ -155,6 +156,9 @@
     </Compile>
     <Compile Include="socketConnection.cs" />
     <Compile Include="socketSend.cs" />
+    <Compile Include="SQLite\BaseDB.cs" />
+    <Compile Include="SQLite\ISQLite.cs" />
+    <Compile Include="SQLite\NotificationDB.cs" />
     <Compile Include="TicketCreate.xaml.cs">
       <DependentUpon>TicketCreate.xaml</DependentUpon>
     </Compile>

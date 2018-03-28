@@ -259,6 +259,7 @@
     <Compile Include="Custom\CustomContentPageRenderer.cs" />
     <Compile Include="Custom\CustomEntry.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Native\ISQLiteImplementation.cs" />
     <Compile Include="NetworkConnection.cs" />
     <Compile Include="PushNotifications\FirebaseServiceId.cs" />
     <Compile Include="PushNotifications\MyFirebaseMessagingService.cs" />
