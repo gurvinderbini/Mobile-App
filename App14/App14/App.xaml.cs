@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using App14.Helpers;
 using Xamarin.Forms;
 using SQLite;
 using PCLStorage;
@@ -57,6 +57,8 @@ namespace App14
             InitializeComponent();
             try
             {
+                var ex = Settings.GeneralSettings;
+
                 getSchoolName();
                 
                 if (school_name != "" && school_name != null)

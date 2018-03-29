@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using App14.Helpers;
 using Newtonsoft.Json;
 using SQLite;
 using PCLStorage;
@@ -107,7 +108,7 @@ namespace App14
                     DisplayAlert("Password", "Password is not given", "Ok");
                     TxtPassword.Focus();
                 }
-                else if (string.IsNullOrEmpty(App.DeviceToken))
+                else if (string.IsNullOrEmpty(Settings.DeviceToken))
                 {
                     DisplayAlert("Push Notification Token", "Push Notifcation Token is not registerd.Please try again in few moments", "Ok");
                     btnLoginLbl.IsEnabled = true;
@@ -242,7 +243,7 @@ namespace App14
             values.Add("operation", "insert_device_token");
             values.Add("user_id", App.user_id);
             values.Add("parent_id", App.tenant_id);
-            values.Add("device_token", App.DeviceToken);
+            values.Add("device_token", Settings.DeviceToken);
             var content = new FormUrlEncodedContent(values);
             HttpResponseMessage response = await client.PostAsync("/itcrm/ws/webservices", content);
             var result = await response.Content.ReadAsStringAsync();
