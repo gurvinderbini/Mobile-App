@@ -8,11 +8,42 @@
                        HasUnevenRows="True"> 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <ViewCell Height="80">
+                            <Grid x:Name="ticketDetails">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout BackgroundColor="{Binding color}" Grid.Row="0" Grid.Column="0" Margin="8">
+                                    <Label x:Name="lblICON" Text="{Binding icon}" TextColor="White" FontAttributes="Bold" FontSize="50" VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                                <StackLayout  Orientation="Vertical" Grid.Row="0" Grid.Column="1" Padding="5" >
+                                    <StackLayout>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <!--<ColumnDefinition Width="1*"  />-->
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label  Grid.Column="0" Text="{Binding Text}" FontAttributes="Bold" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" />
+                                            <!--<Label  Grid.Column="1"  HorizontalOptions="End" FontAttributes="Italic" HorizontalTextAlignment="End"/>-->
+                                        </Grid>
+                                    </StackLayout>
+                                    <Label Text="{Binding summary}"/>
+                                    <Label Text="{Binding detail}" FontAttributes="Italic"  />
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                        <!--<ViewCell>
                             <StackLayout >
                                 <Label Text="{Binding Text}"></Label>
                             </StackLayout>
-                        </ViewCell>
+                        </ViewCell>-->
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

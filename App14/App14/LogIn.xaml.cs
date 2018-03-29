@@ -111,6 +111,7 @@ namespace App14
                         string userName = TxtUserName.Text;
                         string password = TxtPassword.Text;
                         PostLogin();
+                        PushDeviceToken();
                     }
                     catch (Exception e)
                     {
@@ -219,6 +220,20 @@ namespace App14
             {
                 await DisplayAlert("Connection", "Internet Connection Disabled", "Ok");
             }
+        }
+
+
+        public async void PushDeviceToken()
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(App.api_url);
+            var values = new Dictionary<string, string>();
+            values.Add("user_id", "000");
+            values.Add("parent_id", "1111");
+            values.Add("device_token", "testingOfApi");
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync("/insert_device_token/", content);
+            var result = await response.Content.ReadAsStringAsync();
         }
 
     }
