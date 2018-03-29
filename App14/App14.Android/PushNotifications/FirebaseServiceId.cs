@@ -19,12 +19,14 @@ namespace App14.Droid.PushNotifications
     public class FirebaseServiceId : FirebaseInstanceIdService
     {
         const string TAG = "MyFirebaseIIDService";
-        public override void OnTokenRefresh()
+        public override async void OnTokenRefresh()
         {
             var refreshedToken = FirebaseInstanceId.Instance.Token;
             Log.Debug(TAG, "Refreshed token: " + refreshedToken);
+            App.DeviceToken = refreshedToken;
+          // await App.Database.InsertToken(new Models.DeviceTokenBO() {DeviceToken = App.DeviceToken});
             //Settings.SSA_IosDeviceToken = refreshedToken;
-           // Settings.SSA_IosDeviceToken = refreshedToken;
+            // Settings.SSA_IosDeviceToken = refreshedToken;
         }
     }
 }

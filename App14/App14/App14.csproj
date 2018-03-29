@@ -102,6 +102,7 @@
     <Compile Include="Models\Dashboard.cs" />
     <Compile Include="Models\DeviceHealth.cs" />
     <Compile Include="Models\DevicesListJson.cs" />
+    <Compile Include="Models\DeviceTokenBO.cs" />
     <Compile Include="Models\EventsList.cs" />
     <Compile Include="Models\INetworkConnection.cs" />
     <Compile Include="LogIn.xaml.cs">

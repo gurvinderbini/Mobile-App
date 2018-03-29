@@ -82,10 +82,13 @@ namespace App14
             }
         }
 
-        private void Login()
+        private async void Login()
         {
             try
             {
+             // var tokenBo=await  App.Database.GetToken();
+            //    App.DeviceToken = tokenBo == null ? String.Empty : tokenBo.DeviceToken;
+
                 if (string.IsNullOrEmpty(TxtUserName.Text) && string.IsNullOrEmpty(TxtPassword.Text))
                 {
                     btnLoginLbl.IsEnabled = true;
@@ -104,6 +107,11 @@ namespace App14
                     DisplayAlert("Password", "Password is not given", "Ok");
                     TxtPassword.Focus();
                 }
+                else if (string.IsNullOrEmpty(App.DeviceToken))
+                {
+                    DisplayAlert("Push Notification Token", "Push Notifcation Token is not registerd.Please try again in few moments", "Ok");
+                    btnLoginLbl.IsEnabled = true;
+                }
                 else
                 {
                     try
@@ -111,7 +119,7 @@ namespace App14
                         string userName = TxtUserName.Text;
                         string password = TxtPassword.Text;
                         PostLogin();
-                        PushDeviceToken();
+                      
                     }
                     catch (Exception e)
                     {
@@ -122,7 +130,7 @@ namespace App14
                     }
                 }
             }
-            catch
+            catch(Exception e)
             {
                 aiLogin.IsVisible = false;
                 aiLogin.IsRunning = false;
@@ -163,6 +171,9 @@ namespace App14
                         App.user_email = Convert.ToString(email);
                         App.logged_user_name = Convert.ToString(result2.user_full_name);
                         App.user_id = Convert.ToString(result2.user_id);
+                        App.user_tenant_id = Convert.ToString(result2.user_tenant_id);
+
+                        PushDeviceToken();
 
                         //save in database
                         if (rememberMe.Checked == true)
@@ -228,11 +239,12 @@ namespace App14
             var client = new HttpClient();
             client.BaseAddress = new Uri(App.api_url);
             var values = new Dictionary<string, string>();
-            values.Add("user_id", "000");
-            values.Add("parent_id", "1111");
-            values.Add("device_token", "testingOfApi");
+            values.Add("operation", "insert_device_token");
+            values.Add("user_id", App.user_id);
+            values.Add("parent_id", App.tenant_id);
+            values.Add("device_token", App.DeviceToken);
             var content = new FormUrlEncodedContent(values);
-            HttpResponseMessage response = await client.PostAsync("/insert_device_token/", content);
+            HttpResponseMessage response = await client.PostAsync("/itcrm/ws/webservices", content);
             var result = await response.Content.ReadAsStringAsync();
         }
 

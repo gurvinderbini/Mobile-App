@@ -22,10 +22,13 @@ namespace App14
         public static string logged_user_name = "";
         public static string user_email = "";
         public static string user_id="";
+        public static string user_tenant_id = "";
+
         public static string school_name="";
         public static string tenant_id = "";
         public static int length;
         public static int width;
+        public static string DeviceToken=String.Empty;
 
         public async static void NavigateMasterDetail(Page page)
         {

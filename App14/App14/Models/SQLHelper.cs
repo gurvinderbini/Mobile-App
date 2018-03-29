@@ -150,6 +150,8 @@ namespace App14
         static object locker = new object();
         static object lockerEvent = new object();
         static object lockerLogin = new object();
+        static object TokenLock = new object();
+        static object NotificationLock = new object();
         SQLiteAsyncConnection database;
 
         public SqlHelper()
@@ -163,6 +165,8 @@ namespace App14
             database.CreateTableAsync<RememberMeCredentials>().Wait();
 
             database.CreateTableAsync<NotificationBO>().Wait();
+
+            database.CreateTableAsync<DeviceTokenBO>().Wait();
 
         }
         public SQLiteAsyncConnection GetConnection()
@@ -182,13 +186,46 @@ namespace App14
                 return (from i in database.Table<RegEntity>() select i).ToListAsync();
             }
         }*/
+
+        public Task<int> InsertToken(DeviceTokenBO token)
+        {
+            lock (TokenLock)
+            {
+                database.DropTableAsync<DeviceTokenBO>();
+                database.CreateTableAsync<DeviceTokenBO>();
+                return database.InsertAsync(token);
+            }
+        }
+        public Task<DeviceTokenBO> GetToken()
+        {
+            lock (TokenLock)
+            {
+                try
+                {
+                    return database.Table<DeviceTokenBO>().FirstOrDefaultAsync();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+               
+            }
+        }
+
         public Task<int> InsertNotification(NotificationBO item)
         {
-            return database.InsertAsync(item);
+            lock (NotificationLock)
+            {
+                return database.InsertAsync(item);
+            }
         }
         public Task<List<NotificationBO>> GetAllNotfications()
         {
-            return database.Table<NotificationBO>().ToListAsync();
+            lock (NotificationLock)
+            {
+                return database.Table<NotificationBO>().ToListAsync();
+            }
+
             lock (locker)
             {
                

@@ -20,5 +20,7 @@ namespace App14.Models
         public string user_status { get; set; }
         public string user_full_name { get; set; }
         public string message { get; set; }
+
+        public string user_tenant_id { get; set; }
     }
 }
