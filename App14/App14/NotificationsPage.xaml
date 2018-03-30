@@ -6,39 +6,26 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView  x:Name="NotificationsListview" SeparatorColor="Transparent" SeparatorVisibility="None"
-                       HasUnevenRows="True"> 
+                       HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="80">
-                            <Grid x:Name="ticketDetails">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="80" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <StackLayout BackgroundColor="{Binding color}" Grid.Row="0" Grid.Column="0" Margin="8">
-                                    <Label x:Name="lblICON" Text="{Binding icon}" TextColor="White" FontAttributes="Bold" FontSize="50" VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
-                                </StackLayout>
-                                <StackLayout  Orientation="Vertical" Grid.Row="0" Grid.Column="1" Padding="5" >
-                                    <StackLayout>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <!--<ColumnDefinition Width="1*"  />-->
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <Label  Grid.Column="0" Text="{Binding Text}" FontAttributes="Bold" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" />
-                                            <!--<Label  Grid.Column="1"  HorizontalOptions="End" FontAttributes="Italic" HorizontalTextAlignment="End"/>-->
-                                        </Grid>
-                                    </StackLayout>
-                                    <Label Text="{Binding summary}"/>
-                                    <Label Text="{Binding detail}" FontAttributes="Italic"  />
-                                </StackLayout>
-                            </Grid>
+                        <ViewCell >
+                            <StackLayout>
+                                <Grid x:Name="ticketDetails" Margin="20,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Text="{Binding Title}" FontAttributes="Bold" 
+                                           FontSize="Medium"></Label>
+                                    <Label Grid.Row="1" Text="{Binding Message}"></Label>
+                                    <Label Grid.Row="2" Text="{Binding Body}"></Label>
+                                </Grid>
+                                <Label BackgroundColor="Gray" HorizontalOptions="FillAndExpand"
+                                       HeightRequest="1"/>
+                            </StackLayout>
+                          
                         </ViewCell>
                         <!--<ViewCell>
                             <StackLayout >

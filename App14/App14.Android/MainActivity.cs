@@ -9,6 +9,7 @@ using Android.Widget;
 using Android.OS;
 using Android.Net;
 using Android.Content.Res;
+using Xamarin.Forms;
 
 namespace App14.Droid
 {
@@ -35,15 +36,14 @@ namespace App14.Droid
 
         protected override void OnNewIntent(Intent intent)
         {
-
-
-            if (intent.HasExtra("SomeSpecialKey"))
+            if (intent.HasExtra("notification"))
             {
-
+                App.Current.MainPage=new MainPage()
+                {
+                    Detail = new NavigationPage(new NotificationsPage())
+                };
             }
             base.OnNewIntent(intent);
-
-         
         }
 
     }

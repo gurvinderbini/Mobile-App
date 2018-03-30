@@ -27,10 +27,10 @@ namespace App14.Droid.PushNotifications
             try
             {
                 NotificationBO notificationBo = new NotificationBO();
-                
+
                 base.OnMessageReceived(message);
                 Random random = new Random();
-                
+
 
                 foreach (var item in message.Data)
                 {
@@ -65,7 +65,7 @@ namespace App14.Droid.PushNotifications
 
                 var intent = new Intent(this, typeof(MainActivity));
                 intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop | ActivityFlags.NewTask);
-               
+                intent.PutExtra("notification", "notification");
                 PendingIntent pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.OneShot);
 
                 var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
