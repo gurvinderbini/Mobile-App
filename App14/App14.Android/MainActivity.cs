@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
@@ -30,6 +31,19 @@ namespace App14.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
 
+        }
+
+        protected override void OnNewIntent(Intent intent)
+        {
+
+
+            if (intent.HasExtra("SomeSpecialKey"))
+            {
+
+            }
+            base.OnNewIntent(intent);
+
+         
         }
 
     }

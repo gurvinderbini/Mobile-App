@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
+using App14.Models;
 using Firebase.Messaging;
 
 namespace App14.Droid.PushNotifications
@@ -25,29 +26,53 @@ namespace App14.Droid.PushNotifications
         {
             try
             {
-                string text = String.Empty;
+                NotificationBO notificationBo = new NotificationBO();
+                
                 base.OnMessageReceived(message);
                 Random random = new Random();
+                
 
                 foreach (var item in message.Data)
                 {
-                    if (item.Key == "Message")
+                    if (item.Key == "title")
                     {
-                        text = item.Value;
-                        App.Database.InsertNotification(new Models.NotificationBO() { Text=text});
+                        notificationBo.Title = item.Value;
+                    }
+                    if (item.Key == "message")
+                    {
+                        notificationBo.Message = item.Value;
+                    }
+                    if (item.Key == "screen")
+                    {
+                        notificationBo.Screen = item.Value;
+                    }
+                    if (item.Key == "body")
+                    {
+                        notificationBo.Body = item.Value;
+                    }
+                    if (item.Key == "sound")
+                    {
+                        notificationBo.Sound = item.Value;
+                    }
+                    if (item.Key == "content_available")
+                    {
+                        notificationBo.ContentAvailable = item.Value;
                     }
                 }
 
+                App.Database.InsertNotification(notificationBo);
+
+
                 var intent = new Intent(this, typeof(MainActivity));
                 intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop | ActivityFlags.NewTask);
-
+               
                 PendingIntent pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.OneShot);
 
                 var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
                 var notificationBuilder = new NotificationCompat.Builder(this)
                     .SetSmallIcon(Resource.Drawable.icon)
-                    .SetContentTitle("Mobile App")
-                    .SetContentText(text)
+                    .SetContentTitle(notificationBo.Title)
+                    .SetContentText(notificationBo.Message)
                     .SetAutoCancel(true)
                     .SetSound(defaultSoundUri)
                     .SetContentIntent(pendingIntent);
