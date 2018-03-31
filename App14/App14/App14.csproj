@@ -57,6 +57,8 @@
       <DependentUpon>CalendarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ComClass.cs" />
+    <Compile Include="Convertor\NotificationsColorConvertor.cs" />
+    <Compile Include="Convertor\NotificationsIconConvertor.cs" />
     <Compile Include="CSFixIT.xaml.cs">
       <DependentUpon>CSFixIT.xaml</DependentUpon>
     </Compile>

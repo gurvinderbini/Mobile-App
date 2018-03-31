@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:convertor="clr-namespace:App14.Convertor;assembly=App14"
              x:Class="App14.App">
     <Application.Resources>
 
@@ -14,6 +15,8 @@
             </Style>
             <!-- Styles -->
 
+            <convertor:NotificationsColorConvertor x:Key="NotificationsColorConvertor"/>
+            <convertor:NotificationsIconConvertor x:Key="NotificationsIconConvertor"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
